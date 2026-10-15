@@ -5,6 +5,10 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+    - name: Restore Packages
+      run: nuget restore SatsumaStrobes.csproj
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.1
     - name: Build Mod File
