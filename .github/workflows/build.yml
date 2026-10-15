@@ -1,0 +1,16 @@
+name: Build Mod
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+    - name: Build Mod File
+      run: msbuild SatsumaStrobes.csproj /p:Configuration=Release
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: SatsumaStrobes-DLL
+        path: bin/Release/SatsumaStrobes.dll
